@@ -52,6 +52,7 @@ namespace GameEngine
 
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
             GL.EnableVertexAttribArray(0);
+
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -59,6 +60,10 @@ namespace GameEngine
             base.OnRenderFrame(e);
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
+
+            shader.use();
+            GL.BindVertexArray(VertexArrayObject);
+            GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
 
             SwapBuffers();
         }
